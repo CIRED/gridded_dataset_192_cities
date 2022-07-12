@@ -15,7 +15,7 @@ setwd('C:/Users/charl/OneDrive/Bureau/City_dataStudy');
 #outliersMethod = '_boxplotOutliers_PerPixel';
 
 # Import data
-avgData = readRDS(file = paste('./R_Databases/avgCityData_CL.rds', sep = ''))
+avgData = readRDS(file = paste('./R_Databases/avgCityData_CL_20220712.rds', sep = ''))
 
 # --- Transport data --- #
 transportDataDf = avgData %>% filter(PopDensityYear == 2015) %>%
@@ -23,16 +23,16 @@ transportDataDf = avgData %>% filter(PopDensityYear == 2015) %>%
            TransportSource, RushHour, TransportYear, DistanceDriving, DurationDriving, DistanceTransit, DurationTransit)
 
 
-saveRDS(transportDataDf, './R_Databases/TransportData_CL.rds')
-write.csv(transportDataDf, './R_Databases/TransportData_CL.csv', row.names = FALSE)
+saveRDS(transportDataDf, './R_Databases/TransportData_CL_20220712.rds')
+write.csv(transportDataDf, './R_Databases/TransportData_CL_20220712.csv', row.names = FALSE)
 
 
 # --- Population density data --- #
 populationDensityDataDf = avgData %>% distinct(ID, X, Y, Area, City, Country, Continent, GridEPSG, dCenter,
                                                PopDensitySource, PopDensityYear, PopDensity)
 
-saveRDS(populationDensityDataDf, './R_Databases/PopulationDensityData_CL.rds')
-write.csv(populationDensityDataDf, './R_Databases/PopulationDensityData_CL.csv', row.names = FALSE)
+saveRDS(populationDensityDataDf, './R_Databases/PopulationDensityData_CL_20220712.rds')
+write.csv(populationDensityDataDf, './R_Databases/PopulationDensityData_CL_20220712.csv', row.names = FALSE)
 
 
 # --- real estate data --- #
@@ -44,8 +44,8 @@ realEstateDataDf = avgData %>% filter(TransactionSource != '') %>%
                 avgSize_hampelOutliers, avgPriceSqm_hampelOutliers, medSize_hampelOutliers, medPriceSqm_hampelOutliers, regPriceSqm_hampelOutliers, nRealEstateData_hampelOutliers,
                 avgSize_percentilesOutliers, avgPriceSqm_percentilesOutliers, medSize_percentilesOutliers, medPriceSqm_percentilesOutliers, regPriceSqm_percentilesOutliers, nRealEstateData_percentilesOutliers)
 
-saveRDS(realEstateDataDf, paste('./R_Databases/RealEstateData_CL.rds', sep = ''))
-write.csv(realEstateDataDf, paste('./R_Databases/RealEstateData_CL.csv', sep = ''), row.names = FALSE)
+saveRDS(realEstateDataDf, paste('./R_Databases/RealEstateData_CL_20220712.rds', sep = ''))
+write.csv(realEstateDataDf, paste('./R_Databases/RealEstateData_CL_20220712.csv', sep = ''), row.names = FALSE)
 
 # --- land cover data --- #
 
@@ -57,5 +57,5 @@ landCoverDataDf = avgData %>% filter(PopDensityYear == 2015) %>%
                 ESACCI130, ESACCI140, ESACCI150, ESACCI151, ESACCI152, ESACCI153, ESACCI160, ESACCI170, ESACCI180,
                 ESACCI190, ESACCI200, ESACCI201, ESACCI202, ESACCI210, ESACCI220, ESACCI230)
 
-saveRDS(landCoverDataDf, paste('./R_Databases/LandCoverData_CL.rds', sep = ''))
-write.csv(landCoverDataDf, paste('./R_Databases/LandCoverData_CL.csv', sep = ''), row.names = FALSE)
+saveRDS(landCoverDataDf, paste('./R_Databases/LandCoverData_CL_20220712.rds', sep = ''))
+write.csv(landCoverDataDf, paste('./R_Databases/LandCoverData_CL_20220712.csv', sep = ''), row.names = FALSE)

@@ -72,6 +72,10 @@ ImportAvgTidyData = function(cityDatabaseDf)
   landCoverDf = ImportLandCoverData(cityDatabaseDf = cityDatabaseDf,
                                       gridDf = gridDf);
   
+  landCoverDf$ClosedToUrb = (landCoverDf$ESACCI160 + landCoverDf$ESACCI170 + landCoverDf$ESACCI180 + landCoverDf$ESACCI210 + landCoverDf$ESACCI220) / landCoverDf$AREA
+  landCoverDf$OpenedToUrb = 1 - landCoverDf$ClosedToUrb
+  
+  
   # Population density data
   popDensityDf = ImportPopDensityData(cityDatabaseDf = cityDatabaseDf,
                                       gridDf = gridDf);
@@ -503,7 +507,7 @@ for(iRow in (1:nrow(cityDatabaseDf)))
 close(progressBar);
 
 # Save data to R format
-saveRDS(avgCityDataDf, file = paste('./R_Databases/avgCityData_CL.rds', sep = ''))
+saveRDS(avgCityDataDf, file = paste('./R_Databases/avgCityData_CL_20220712.rds', sep = ''))
 
 
 
